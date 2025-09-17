@@ -30,6 +30,7 @@ export default function Home() {
 			{files?.map((file) => <p key={file._id}>{file.name}</p>)}
 			{isSignedIn && (
 				<Button
+					className='hover:cursor-pointer'
 					onClick={() =>
 						createFile({ name: 'test 2', orgId: organization?.id || userId! })
 					}
