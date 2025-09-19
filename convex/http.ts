@@ -13,6 +13,7 @@ http.route({
 		const headerPayload = request.headers;
 
 		try {
+			console.log(payloadString);
 			const result = await ctx.runAction(internal.clerk.fulfill, {
 				payload: payloadString,
 				headers: {
@@ -36,6 +37,7 @@ http.route({
 		} catch (err) {
 			return new Response('Webhook Error', {
 				status: 400,
+				// statusText: err.message,
 			});
 		}
 	}),
