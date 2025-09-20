@@ -26,9 +26,14 @@ http.route({
 			switch (result.type) {
 				case 'user.created':
 					await ctx.runMutation(internal.users.createUser, {
-						tokenIdentifier: `${result.data.id}`,
+						tokenIdentifier: `https://${process.env.NEXT_PUBLIC_CLERK_FRONTEND_API}|${result.data.id}`,
 					});
 					break;
+				case 'organization.created':
+					await ctx.runMutation(internal.users.addOrgIdToUser, {
+						tokenIdentifier: `https://${process.env.NEXT_PUBLIC_CLERK_FRONTEND_API}|${result.data.created_by}`,
+						orgId: `${result.data.id}`,
+					});
 			}
 
 			return new Response(null, {
