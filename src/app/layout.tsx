@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Toaster } from 'sonner';
 import { ConvexClientProvider } from './ConvexClientProvider';
 import './globals.css';
 import { Header } from './Header';
@@ -19,6 +20,7 @@ export default function RootLayout({
 				<ConvexClientProvider>
 					<Header />
 					{children}
+					<Toaster />
 				</ConvexClientProvider>
 			</body>
 		</html>
